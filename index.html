@@ -6,7 +6,13 @@
     <style>
         body {
             /* min-height: 100vh; */ /* убрать или заменить на height: 100vh; */
-            min-height: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0f1a0%, #1a233a100%);
+            color: #e0e6f0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin:0;
+            padding:0;
         }
 
         .tab-content {
@@ -14,6 +20,8 @@
             margin: 32px auto 0 auto;
             padding: 28px 18px 24px 18px;
             max-width: 420px;
+            overflow-y: auto;
+            max-height: calc(100vh - 120px);
         }
 
         .tabs {
@@ -63,12 +71,14 @@
         .tab-content {
             display: none;
             max-width: 420px;
-            margin: 48px auto 0 auto;
+            margin: 32px auto 0 auto;
             background: rgba(20,30,50,0.98);
             border-radius: 20px;
             box-shadow: 0 6px 32px #000b;
-            padding: 40px 32px 36px 32px;
+            padding: 28px 18px 24px 18px;
             animation: fadein 0.5s;
+            overflow-y: auto;
+            max-height: calc(100vh - 120px);
         }
 
             .tab-content.active {
