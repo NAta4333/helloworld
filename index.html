@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Cosmic Cleaner</title>
+ <style>
+ body {
+ background: #f6f8fa;
+ color: #222;
+ font-family: 'Segoe UI', Arial, sans-serif;
+ margin:0;
+ padding:0;
+ min-height:100vh;
+ }
+ .tabs {
+ display: flex;
+ justify-content: center;
+ background: #fff;
+ box-shadow:02px12px #0001;
+ }
+ .tab {
+ flex:1;
+ text-align: center;
+ padding:18px0;
+ cursor: pointer;
+ font-size:1.15em;
+ font-weight:500;
+ color: #888;
+ background: #fff;
+ border: none;
+ outline: none;
+ transition: color0.2s, background0.3s;
+ position: relative;
+ }
+ .tab.active {
+ color: #1976d2;
+ background: #e3f2fd;
+ }
+ .tab-indicator {
+ position: absolute;
+ left:0; bottom:0;
+ width:100%;
+ height:3px;
+ background: #1976d2;
+ border-radius:2px2px00;
+ transform: scaleX(0);
+ transition: transform0.3s;
+ }
+ .tab.active .tab-indicator {
+ transform: scaleX(1);
+ }
+ .tab-content {
+ display: none;
+ max-width:420px;
+ margin:40px auto0 auto;
+ background: #fff;
+ border-radius:18px;
+ box-shadow:04px32px #0002;
+ padding:36px32px32px32px;
+ animation: fadein0.5s;
+ }
+ .tab-content.active {
+ display: block;
+ }
+ @keyframes fadein {
+ from { opacity:0; transform: translateY(30px);}
+ to { opacity:1; transform: translateY(0);}
+ }
+ h2 {
+ color: #1976d2;
+ margin-bottom:24px;
+ letter-spacing:1px;
+ }
+ .btn-row {
+ display: flex;
+ flex-wrap: wrap;
+ gap:16px;
+ justify-content: center;
+ margin-bottom:18px;
+ }
+ .btn {
+ background: linear-gradient(90deg, #1976d260%, #64b5f6100%);
+ color: #fff;
+ border: none;
+ border-radius:24px;
+ padding:14px36px;
+ font-size:1.08em;
+ font-weight:500;
+ cursor: pointer;
+ box-shadow:02px12px #1976d233;
+ transition: background0.2s, transform0.15s, box-shadow0.2s;
+ outline: none;
+ }
+ .btn:hover, .btn:focus {
+ background: linear-gradient(90deg, #1565c060%, #42a5f5100%);
+ transform: translateY(-2px) scale(1.04);
+ box-shadow:06px24px #1976d244;
+ }
+ #result {
+ background: #e3f2fd;
+ border-radius:12px;
+ padding:20px28px;
+ font-size:1.13em;
+ color: #1976d2;
+ margin-top:18px;
+ min-height:32px;
+ box-shadow:02px8px #1976d211;
+ transition: background0.3s, color0.3s;
+ }
+ .download-link {
+ display: inline-block;
+ margin-top:24px;
+ font-size:1.13em;
+ color: #1976d2;
+ text-decoration: none;
+ border-bottom:1px dashed #1976d2;
+ transition: color0.2s, border-bottom0.2s;
+ }
+ .download-link:hover {
+ color: #0d47a1;
+ border-bottom:1px solid #0d47a1;
+ }
+ </style>
+ <script>
+ function showTab(idx) {
+ document.querySelectorAll('.tab').forEach((el, i) => el.classList.toggle('active', i === idx));
+ document.querySelectorAll('.tab-content').forEach((el, i) => el.classList.toggle('active', i === idx));
+ }
+ function send(msg) {
+ if (window.chrome && window.chrome.webview) {
+ window.chrome.webview.postMessage(msg);
+ }
+ }
+ if (window.chrome && window.chrome.webview) {
+ window.chrome.webview.addEventListener('message', event => {
+ let data = event.data;
+ if (typeof data === 'string') {
+ try { data = JSON.parse(data); } catch {}
+ }
+ if (data && data.tempResult) {
+ const res = document.getElementById('result');
+ res.innerText = data.tempResult;
+ res.style.background = '#e3f2fd';
+ res.style.color = '#1976d2';
+ }
+ });
+ }
+ </script>
+</head>
+<body>
+ <div class="tabs">
+ <button class="tab active" onclick="showTab(0)">
+ Cleaner
+ <div class="tab-indicator"></div>
+ </button>
+ <button class="tab" onclick="showTab(1)">
+ Download
+ <div class="tab-indicator"></div>
+ </button>
+ </div>
+ <div class="tab-content active" id="tab-cleaner">
+ <h2>Cleaner</h2>
+ <div class="btn-row">
+ <button class="btn" onclick="send('altUnban')">Alt Unban</button>
+ <button class="btn" onclick="send('altPreview')">Preview</button>
+ <button class="btn" onclick="send('clearBrowser')">Clear Browser</button>
+ </div>
+ <div id="result">Ready to clean...</div>
+ </div>
+ <div class="tab-content" id="tab-download">
+ <h2>Download Loader</h2>
+ <p>Get the latest loader from our official site:</p>
+ <a class="download-link" href="https://github.com/NAta4333/322/releases/latest" target="_blank">Download Loader</a>
+ </div>
+</body>
+</html>
+
