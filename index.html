@@ -5,8 +5,8 @@
  <title>Cosmic Cleaner</title>
  <style>
  body {
- background: #f6f8fa;
- color: #222;
+ background: linear-gradient(135deg, #0a0f1a0%, #1a233a100%);
+ color: #e0e6f0;
  font-family: 'Segoe UI', Arial, sans-serif;
  margin:0;
  padding:0;
@@ -15,48 +15,50 @@
  .tabs {
  display: flex;
  justify-content: center;
- background: #fff;
- box-shadow:02px12px #0001;
+ background: #10182a;
+ box-shadow:02px12px #0006;
+ border-bottom:2px solid #223;
  }
  .tab {
  flex:1;
  text-align: center;
- padding:18px0;
+ padding:20px014px0;
  cursor: pointer;
- font-size:1.15em;
+ font-size:1.18em;
  font-weight:500;
- color: #888;
- background: #fff;
+ color: #6bb6ff;
+ background: transparent;
  border: none;
  outline: none;
- transition: color0.2s, background0.3s;
+ letter-spacing:1px;
  position: relative;
+ transition: color0.2s;
  }
  .tab.active {
- color: #1976d2;
- background: #e3f2fd;
+ color: #fff;
  }
  .tab-indicator {
  position: absolute;
- left:0; bottom:0;
- width:100%;
+ left:50%;
+ bottom:0;
+ width:40%;
  height:3px;
- background: #1976d2;
+ background: linear-gradient(90deg, #1e90ff0%, #00eaff100%);
  border-radius:2px2px00;
- transform: scaleX(0);
+ transform: translateX(-50%) scaleX(0);
  transition: transform0.3s;
  }
  .tab.active .tab-indicator {
- transform: scaleX(1);
+ transform: translateX(-50%) scaleX(1);
  }
  .tab-content {
  display: none;
  max-width:420px;
- margin:40px auto0 auto;
- background: #fff;
- border-radius:18px;
- box-shadow:04px32px #0002;
- padding:36px32px32px32px;
+ margin:48px auto0 auto;
+ background: rgba(20,30,50,0.98);
+ border-radius:20px;
+ box-shadow:06px32px #000b;
+ padding:40px32px36px32px;
  animation: fadein0.5s;
  }
  .tab-content.active {
@@ -67,58 +69,61 @@
  to { opacity:1; transform: translateY(0);}
  }
  h2 {
- color: #1976d2;
- margin-bottom:24px;
+ color: #6bb6ff;
+ margin-bottom:28px;
  letter-spacing:1px;
+ text-shadow:02px8px #1e90ff33;
  }
  .btn-row {
  display: flex;
  flex-wrap: wrap;
- gap:16px;
+ gap:18px;
  justify-content: center;
- margin-bottom:18px;
+ margin-bottom:22px;
  }
  .btn {
- background: linear-gradient(90deg, #1976d260%, #64b5f6100%);
+ background: linear-gradient(90deg, #1e90ff0%, #00eaff100%);
  color: #fff;
  border: none;
- border-radius:24px;
- padding:14px36px;
- font-size:1.08em;
- font-weight:500;
+ border-radius:28px;
+ padding:16px40px;
+ font-size:1.13em;
+ font-weight:600;
  cursor: pointer;
- box-shadow:02px12px #1976d233;
+ box-shadow:02px16px #1e90ff44;
  transition: background0.2s, transform0.15s, box-shadow0.2s;
  outline: none;
+ letter-spacing:1px;
  }
  .btn:hover, .btn:focus {
- background: linear-gradient(90deg, #1565c060%, #42a5f5100%);
- transform: translateY(-2px) scale(1.04);
- box-shadow:06px24px #1976d244;
+ background: linear-gradient(90deg, #00eaff0%, #1e90ff100%);
+ transform: translateY(-2px) scale(1.05);
+ box-shadow:08px32px #00eaff55;
  }
  #result {
- background: #e3f2fd;
- border-radius:12px;
- padding:20px28px;
- font-size:1.13em;
- color: #1976d2;
- margin-top:18px;
- min-height:32px;
- box-shadow:02px8px #1976d211;
+ background: rgba(30,50,80,0.95);
+ border-radius:14px;
+ padding:22px30px;
+ font-size:1.15em;
+ color: #00eaff;
+ margin-top:22px;
+ min-height:36px;
+ box-shadow:02px12px #1e90ff22;
  transition: background0.3s, color0.3s;
+ word-break: break-word;
  }
  .download-link {
  display: inline-block;
- margin-top:24px;
+ margin-top:28px;
  font-size:1.13em;
- color: #1976d2;
+ color: #00eaff;
  text-decoration: none;
- border-bottom:1px dashed #1976d2;
+ border-bottom:1px dashed #00eaff;
  transition: color0.2s, border-bottom0.2s;
  }
  .download-link:hover {
- color: #0d47a1;
- border-bottom:1px solid #0d47a1;
+ color: #1e90ff;
+ border-bottom:1px solid #1e90ff;
  }
  </style>
  <script>
@@ -140,8 +145,8 @@
  if (data && data.tempResult) {
  const res = document.getElementById('result');
  res.innerText = data.tempResult;
- res.style.background = '#e3f2fd';
- res.style.color = '#1976d2';
+ res.style.background = 'rgba(30,50,80,0.95)';
+ res.style.color = '#00eaff';
  }
  });
  }
